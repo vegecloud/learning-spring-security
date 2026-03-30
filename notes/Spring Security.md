@@ -13,11 +13,18 @@ It contains a series of filters that intercepts every request and redirects a us
 * The actual authentication is conducted by authentication providers.
 * Regardless of whether the authentication is successful or not, the authentication object is stored in the **security context**.
 * This authentication object is stored against a session id that is created for a given browser.
-* Once the first request is processed and there ia an entry in the security context, subsequent requests will make use of this entry.
+* Once the first request is processed and there is an entry in the security context, subsequent requests will make use of this entry.
 
 ### Default implementation of authentication in Spring Security:
 
 When our credentials are successfully validated, a JSESSIONID is generated and stored in our browser cookies. Spring Security maps this session id to the authentication details. 
 These details will be used every time we try to access a protected API - thus not needing to invoke an authentication check for every single request.
 
+Spring Security implements a default **Security Filter Chain** to handle every request.
+The security filter chain object is registered as a Bean. To customise the behaviour of the filter chain, we need to create our own SecurityFilterChain bean. 
 
+**SecurityFilterChain syntax:**
+* requests . requestMatchers() - accepts any number of API paths we can pass as input
+* requests . requestMatches() . authenticated() - allows authenticated users to access the specified API paths
+* requests . requestMatches() . permitAll() - the API path can be accessed without security
+* requests . requestMatches() . denyAll() - all requests to the API will be denied regardless of whether the user is authenticated or not
