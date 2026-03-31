@@ -23,8 +23,12 @@ These details will be used every time we try to access a protected API - thus no
 Spring Security implements a default **Security Filter Chain** to handle every request.
 The security filter chain object is registered as a Bean. To customise the behaviour of the filter chain, we need to create our own SecurityFilterChain bean. 
 
-**SecurityFilterChain syntax:**
+#### SecurityFilterChain syntax:
 * requests . requestMatchers() - accepts any number of API paths we can pass as input
 * requests . requestMatches() . authenticated() - allows authenticated users to access the specified API paths
 * requests . requestMatches() . permitAll() - the API path can be accessed without security
 * requests . requestMatches() . denyAll() - all requests to the API will be denied regardless of whether the user is authenticated or not
+
+#### Basic authorisation:
+Credentials are sent in the request header with the name **Authorisation**, containing prefix _Basic_ and the encoded credentials.
+These credentials are base64 encoded in the format username:password.
