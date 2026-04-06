@@ -32,3 +32,19 @@ The security filter chain object is registered as a Bean. To customise the behav
 #### Basic authorisation:
 Credentials are sent in the request header with the name **Authorisation**, containing prefix _Basic_ and the encoded credentials.
 These credentials are base64 encoded in the format username:password.
+
+### User management in Spring Security:
+
+![img.png](spring-security-user-management.png)
+
+Spring Security provides three sample implementations of the **UserDetailsManager interface**. We can define our custom implementation by implementing this interface.
+The user management interfaces and their methods leverage on the **UserDetails interface** (a representation of an end user).
+The sample implementation of the UserDetails interface is the User class.
+
+### UserDetails interface vs Authentication interface:
+
+![img.png](spring-security-interfaces-differences.png)
+
+Some of the helper methods required from the UserDetails interface (e.g. checking credential expiry, checking account expiry) is only needed once the authentication is completed.
+In situations where authentication is unsuccessful, there is no meaning in using such helper methods. Separated interfaces were created to avoid unnecessary carry-over of such methods.
+
