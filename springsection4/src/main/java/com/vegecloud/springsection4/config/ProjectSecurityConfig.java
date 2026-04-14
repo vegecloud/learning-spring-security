@@ -4,14 +4,14 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.password.CompromisedPasswordChecker;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.password.HaveIBeenPwnedRestApiPasswordChecker;
+
+import javax.sql.DataSource;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
@@ -29,24 +29,14 @@ public class ProjectSecurityConfig {
     }
 
     /**
-     * We can use an implementation of the UserDetailsService interface from Spring Security
-     * which helps us deal with user accounts (creating, fetching) that are stored in-memory.
-     * authorities() allow us to define what authorities or access level the user has.
+     * We return the JdbcUserDetailsManager object with the constructor that accepts
+     * the DataSource object as a parameter, allowing Jdbc to know our connection details
+     * based on the properties specified in our application.yaml file from the DataSource object.
      */
 
     @Bean
-    public UserDetailsService userDetailsService() {
-        UserDetails user = User
-            .withUsername("user")
-            .password("{noop}EazyBytes@12345")
-            .authorities("read")
-            .build();
-        UserDetails admin = User
-            .withUsername("admin")
-            .password("{bcrypt}$2a$12$FseXXeUxAptDlak4cEmrT.BS7T6NNw3XJ6V5DQfjDFKnQS/RH0ebu")
-            .authorities("admin")
-            .build();
-        return new InMemoryUserDetailsManager(user, admin);
+    public UserDetailsService userDetailsService(DataSource dataSource) {
+        return new JdbcUserDetailsManager(dataSource);
     }
 
     /**
