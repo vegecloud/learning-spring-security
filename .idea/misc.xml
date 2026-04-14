@@ -4,7 +4,17 @@
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
+        <option value="$PROJECT_DIR$/learning-spring-security/springsection1/pom.xml" />
+        <option value="$PROJECT_DIR$/learning-spring-security/springsection2/springsection2/pom.xml" />
+        <option value="$PROJECT_DIR$/learning-spring-security/springsection2/pom.xml" />
+        <option value="$PROJECT_DIR$/learning-spring-security/springsection3/springsection3/pom.xml" />
+        <option value="$PROJECT_DIR$/learning-spring-security/springsection4/springsection4/pom.xml" />
+        <option value="$PROJECT_DIR$/springsection4/springsection4/pom.xml" />
         <option value="$PROJECT_DIR$/springsection1/pom.xml" />
+        <option value="$PROJECT_DIR$/springsection2/pom.xml" />
+        <option value="$PROJECT_DIR$/springsection3/springsection3/pom.xml" />
+        <option value="$PROJECT_DIR$/springsection4/pom.xml" />
+        <option value="$PROJECT_DIR$/springsection3/pom.xml" />
       </list>
     </option>
   </component>

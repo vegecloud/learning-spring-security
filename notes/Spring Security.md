@@ -1,4 +1,4 @@
-## 1. Spring Security
+## Spring Security
 
 By default, Spring Security will protect every API and MVC path available inside our project.
 It contains a series of filters that intercepts every request and redirects a user that do not have the appropriate credentials to access the resource.
@@ -47,4 +47,3 @@ The sample implementation of the UserDetails interface is the User class.
 
 Some of the helper methods required from the UserDetails interface (e.g. checking credential expiry, checking account expiry) is only needed once the authentication is completed.
 In situations where authentication is unsuccessful, there is no meaning in using such helper methods. Separated interfaces were created to avoid unnecessary carry-over of such methods.
-
