@@ -1,6 +1,7 @@
 # learning-spring-security
 
 This is a project to learn Spring Security from the Udemy course Spring Security Zero to Master along with JWT, OAuth2.
+GitHub link: https://github.com/eazybytes/spring-security
 
 This project covers:
 * Spring Security to secure a web application

@@ -47,3 +47,8 @@ The sample implementation of the UserDetails interface is the User class.
 
 Some of the helper methods required from the UserDetails interface (e.g. checking credential expiry, checking account expiry) is only needed once the authentication is completed.
 In situations where authentication is unsuccessful, there is no meaning in using such helper methods. Separated interfaces were created to avoid unnecessary carry-over of such methods.
+
+### Custom implementation to fetch credentials:
+
+We can instruct Spring Security to fetch user credentials from our own custom table instead of the default implementation by implementing and overriding methods (e.g. loadUserByUsername) from the UserDetailsService.
+The authentication provider will use our custom Bean that will query our own table.
