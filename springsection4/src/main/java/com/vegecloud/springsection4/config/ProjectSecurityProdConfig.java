@@ -12,9 +12,9 @@ import org.springframework.security.web.authentication.password.HaveIBeenPwnedRe
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
-@Profile("!prod")
+@Profile("prod") // only use this Bean when the active profile is prod
 @Configuration
-public class ProjectSecurityConfig {
+public class ProjectSecurityProdConfig {
 
     /**
      * Spring Security enables CSRF protection by default for POST, PUT, PATCH, DELETE methods.
