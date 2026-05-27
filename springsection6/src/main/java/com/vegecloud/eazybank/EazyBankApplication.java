@@ -1,13 +1,13 @@
-package com.vegecloud.springsection6;
+package com.vegecloud.eazybank;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Springsection6Application {
+public class EazyBankApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Springsection6Application.class, args);
+		SpringApplication.run(EazyBankApplication.class, args);
 	}
 
 }

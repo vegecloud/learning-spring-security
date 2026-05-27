@@ -1,6 +1,6 @@
-package com.vegecloud.springsection6.repository;
+package com.vegecloud.eazybank.repository;
 
-import com.vegecloud.springsection6.model.Customer;
+import com.vegecloud.eazybank.model.Customer;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

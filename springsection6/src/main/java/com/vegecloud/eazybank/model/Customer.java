@@ -1,4 +1,4 @@
-package com.vegecloud.springsection6.model;
+package com.vegecloud.eazybank.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

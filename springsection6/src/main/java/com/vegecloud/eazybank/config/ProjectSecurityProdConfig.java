@@ -1,7 +1,7 @@
-package com.vegecloud.springsection6.config;
+package com.vegecloud.eazybank.config;
 
-import com.vegecloud.springsection6.exceptionhandler.CustomAccessDeniedHandler;
-import com.vegecloud.springsection6.exceptionhandler.CustomBasicAuthenticationEntryPoint;
+import com.vegecloud.eazybank.exceptionhandler.CustomAccessDeniedHandler;
+import com.vegecloud.eazybank.exceptionhandler.CustomBasicAuthenticationEntryPoint;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;

@@ -1,4 +1,4 @@
-package com.vegecloud.springsection6.controller;
+package com.vegecloud.eazybank.controller;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;

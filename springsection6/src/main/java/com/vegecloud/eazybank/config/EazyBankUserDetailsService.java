@@ -1,7 +1,7 @@
-package com.vegecloud.springsection6.config;
+package com.vegecloud.eazybank.config;
 
-import com.vegecloud.springsection6.model.Customer;
-import com.vegecloud.springsection6.repository.CustomerRepository;
+import com.vegecloud.eazybank.model.Customer;
+import com.vegecloud.eazybank.repository.CustomerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

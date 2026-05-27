@@ -1,4 +1,4 @@
-package com.vegecloud.springsection6.events;
+package com.vegecloud.eazybank.events;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.event.EventListener;

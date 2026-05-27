@@ -1,10 +1,10 @@
-package com.vegecloud.springsection6;
+package com.vegecloud.eazybank;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class Springsection6ApplicationTests {
+class EazyBankApplicationTests {
 
 	@Test
 	void contextLoads() {

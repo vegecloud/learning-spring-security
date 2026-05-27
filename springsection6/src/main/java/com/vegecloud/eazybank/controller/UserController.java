@@ -1,7 +1,7 @@
-package com.vegecloud.springsection6.controller;
+package com.vegecloud.eazybank.controller;
 
-import com.vegecloud.springsection6.model.Customer;
-import com.vegecloud.springsection6.repository.CustomerRepository;
+import com.vegecloud.eazybank.model.Customer;
+import com.vegecloud.eazybank.repository.CustomerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,4 +1,4 @@
-package com.vegecloud.springsection6.config;
+package com.vegecloud.eazybank.config;
 
 import lombok.RequiredArgsConstructor;
 import org.jspecify.annotations.Nullable;

@@ -1,4 +1,4 @@
-package com.vegecloud.springsection6.exceptionhandler;
+package com.vegecloud.eazybank.exceptionhandler;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
