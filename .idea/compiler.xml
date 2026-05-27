@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="springsection5" />
         <module name="springsection4" />
+        <module name="springsection6" />
         <module name="springsection1" />
         <module name="springsection3" />
         <module name="springsection2" />
@@ -22,6 +23,7 @@
       <module name="springsection3" options="-parameters" />
       <module name="springsection4" options="-parameters" />
       <module name="springsection5" options="-parameters" />
+      <module name="springsection6" options="-parameters" />
     </option>
   </component>
 </project>
