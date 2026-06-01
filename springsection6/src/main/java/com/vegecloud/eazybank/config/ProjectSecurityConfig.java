@@ -34,7 +34,7 @@ public class ProjectSecurityConfig {
                 .maxSessionsPreventsLogin(true))
             .csrf(csrfConfig -> csrfConfig.disable())
             .authorizeHttpRequests(requests -> requests
-            .requestMatchers("/myAccount", "/myBalance", "/myLoans", "/myCards").authenticated()
+            .requestMatchers("/myAccount", "/myBalance", "/myLoans", "/myCards", "/user").authenticated()
             .requestMatchers("/notices", "/contact", "/register", "/error", "/invalidSession").permitAll());
         http.formLogin(withDefaults());
         http.httpBasic(hbc -> hbc.authenticationEntryPoint(new CustomBasicAuthenticationEntryPoint()));
