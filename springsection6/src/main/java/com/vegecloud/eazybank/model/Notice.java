@@ -1,5 +1,6 @@
 package com.vegecloud.eazybank.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -19,6 +20,8 @@ public class Notice {
     private String noticeDetails;
     private Date noticeBegDt;
     private Date noticeEndDt;
+    @JsonIgnore
     private Date createDt;
+    @JsonIgnore
     private Date updateDt;
 }
