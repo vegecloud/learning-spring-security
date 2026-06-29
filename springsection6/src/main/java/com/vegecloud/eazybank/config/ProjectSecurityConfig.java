@@ -2,16 +2,21 @@ package com.vegecloud.eazybank.config;
 
 import com.vegecloud.eazybank.exceptionhandler.CustomAccessDeniedHandler;
 import com.vegecloud.eazybank.exceptionhandler.CustomBasicAuthenticationEntryPoint;
+import com.vegecloud.eazybank.filter.CsrfCookieFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.security.authentication.password.CompromisedPasswordChecker;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.password.HaveIBeenPwnedRestApiPasswordChecker;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+import org.springframework.security.web.csrf.CsrfTokenRequestAttributeHandler;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 
@@ -32,11 +37,18 @@ public class ProjectSecurityConfig {
      * -
      * We can invoke the .cors method to enable cross-origin communication (between the UI and the REST API).
      * To do so we pass an anonymous class to the configuration source and override the cors configuration method.
+     * -
+     * The .csrf method allows us to specify the Csrf configuration to generate the CSRF token.
+     * Because the token is lazily loaded by default, we can use a custom filter to render the token on the first request.
+     * The CsrfTokenRequestAttributeHandler class makes the CSRF token available as a request attribute.
      */
 
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.cors(corsConfig -> corsConfig.configurationSource(new CorsConfigurationSource() {
+        CsrfTokenRequestAttributeHandler csrfTokenRequestAttributeHandler = new CsrfTokenRequestAttributeHandler();
+        http.securityContext(contextConfig -> contextConfig.requireExplicitSave(false)) // ask Spring Security to store the JSESSIONID
+            .sessionManagement(sessionConfig -> sessionConfig.sessionCreationPolicy(SessionCreationPolicy.ALWAYS)) // always create a JSESSIONID
+            .cors(corsConfig -> corsConfig.configurationSource(new CorsConfigurationSource() {
                 @Override
                 public CorsConfiguration getCorsConfiguration(HttpServletRequest request) {
                     CorsConfiguration config = new CorsConfiguration();
@@ -48,14 +60,14 @@ public class ProjectSecurityConfig {
                     return config;
                 }
             }))
-            .sessionManagement(smc -> smc
-                .invalidSessionUrl("/invalidSession")
-                .maximumSessions(3)
-                .maxSessionsPreventsLogin(true))
-            .csrf(csrfConfig -> csrfConfig.disable())
+            .csrf(csrfConfig -> csrfConfig
+                .csrfTokenRequestHandler(csrfTokenRequestAttributeHandler) // allows us to extract the CSRF token
+                .ignoringRequestMatchers("/contact", "/register") // ignore Csrf protection for these api
+                .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())) // allows client-side to read the CSRF token from the header
+            .addFilterAfter(new CsrfCookieFilter(), BasicAuthenticationFilter.class)
             .authorizeHttpRequests(requests -> requests
-            .requestMatchers("/myAccount", "/myBalance", "/myLoans", "/myCards", "/user").authenticated()
-            .requestMatchers("/notices", "/contact", "/register", "/error", "/invalidSession").permitAll());
+                .requestMatchers("/myAccount", "/myBalance", "/myLoans", "/myCards", "/user").authenticated()
+                .requestMatchers("/notices", "/contact", "/register", "/error", "/invalidSession").permitAll());
         http.formLogin(withDefaults());
         http.httpBasic(hbc -> hbc.authenticationEntryPoint(new CustomBasicAuthenticationEntryPoint()));
         http.exceptionHandling(ehc -> ehc.accessDeniedHandler(new CustomAccessDeniedHandler()));
